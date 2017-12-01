@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.12-alpine
+    volumes:
+      - ./etc/nginx/:/etc/nginx/
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    networks:
+      test_carles:
+
+networks:
+  test_carles:
+    external: true
+
+
+
+#    networks:
+#      https_services:
+#
+#networks:
+#  https_services:
+#    driver: bridge
