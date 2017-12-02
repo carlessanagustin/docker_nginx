@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  dmz_network:
+    driver: bridge
+
 services:
   nginx:
     image: nginx:1.12-alpine
@@ -8,19 +12,27 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
+    #restart: always
     networks:
-      test_carles:
+      dmz_network:
 
-networks:
-  test_carles:
-    external: true
+  jenkins:
+    image: jenkins
+    #restart: always
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    expose:
+      - 8080
+      - 50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    #environment:
+    #  - JENKINS_ARG="--prefix=/jenkins"
+    depends_on:
+      - nginx
+    networks:
+      dmz_network:
 
-
-
-#    networks:
-#      https_services:
-#
-#networks:
-#  https_services:
-#    driver: bridge
+volumes:
+  jenkins_home:
