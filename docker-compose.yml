@@ -1,26 +1,18 @@
 version: '3'
 
+networks:
+  jenkinsdocker_default:
+    external: true
+
 services:
   nginx:
-    image: nginx:1.12-alpine
+    image: nginx:1.12
     volumes:
       - ./etc/nginx/:/etc/nginx/
+      - ./certs/nginx:/etc/nginx/certs
     ports:
       - "80:80"
       - "443:443"
-    restart: always
+    restart: unless-stopped
     networks:
-      test_carles:
-
-networks:
-  test_carles:
-    external: true
-
-
-
-#    networks:
-#      https_services:
-#
-#networks:
-#  https_services:
-#    driver: bridge
+      - jenkinsdocker_default

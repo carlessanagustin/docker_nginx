@@ -1,1 +1,4 @@
-etc/nginx/certs/*
+./etc/nginx/certs/*
+certs
+logs
+keys
