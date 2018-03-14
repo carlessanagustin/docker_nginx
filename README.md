@@ -10,16 +10,33 @@
 * Option 1 self-signed: Just run `./start_server`
 * Option 2 apply yours: Place certificates in `./cert/nginx/http.crt` & `./cert/nginx/http.key`
 
-## htaccess
+## Access
 
 * Current user: admin
 * Current password: test12345678
 
-## Advanced
+## Integrate with other services
 
-Adding include lines:
+* NGINX configuration level (jenkins example)
 
 ```shell
-echo "$(awk '/# upstreams above/{print "include /etc/nginx/conf.d/extra-upstreams.nginx;"}1' default.conf)" > default.conf
-echo "$(awk '/# locations above/{print "include /etc/nginx/conf.d/extra-locations.nginx;"}1' default.conf)" > default.conf
+cp /opt/docker_jenkins/etc/nginx/conf.d/*.nginx /opt/docker_nginx/etc/nginx/conf.d/
+
+echo "$(awk '/# upstream above/{print "include /etc/nginx/conf.d/jenkins-upstream.nginx;"}1' /opt/docker_nginx/etc/nginx/conf.d/default.conf)" > /opt/docker_nginx/etc/nginx/conf.d/default.conf
+echo "$(awk '/# location above/{print "include /etc/nginx/conf.d/jenkins-location.nginx;"}1' /opt/docker_nginx/etc/nginx/conf.d/default.conf)" > /opt/docker_nginx/etc/nginx/conf.d/default.conf
+```
+
+* Docker Compose configuration level (jenkins example)
+
+Edit `/opt/docker_nginx/docker-compose.yml` & add:
+
+```yaml
+...
+networks:
+  dockerjenkins_default:
+    external: true
+...
+services:
+  networks:
+    - jenkinsdocker_default
 ```

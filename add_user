@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+USER=admin
+PASSWORD=test12345678
+
+if [ -z "$*" ] ;
+then htpasswd -cb ./etc/nginx/.htpasswd $USER $PASSWORD ;
+else htpasswd -cb ./etc/nginx/.htpasswd $USER $1 ;
+fi

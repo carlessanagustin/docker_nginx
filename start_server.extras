@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+CHECK="./certs/nginx/https.key"
+
+if [ -e "$CHECK" ] ;
+then docker-compose -f docker-compose.extras.yml up -d ;
+else bash create_keys && docker-compose -f docker-compose.extras.yml up -d ;
+fi
