@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-CHECK="./certs/nginx/https.key"
-
-if [ -e "$CHECK" ] ;
-then docker-compose up -d ;
-else bash create_keys && docker-compose up -d ;
-fi

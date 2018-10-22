@@ -12,7 +12,6 @@ Common_Name=www.example.com
 function ssl_keys(){
   mkdir -p $1
   openssl genrsa -out $1/https.key 2048
-  # openssl ecparam -genkey -name secp384r1 -out https.key
   openssl req -new -x509 -sha256 -days 3650 \
       -key $1/https.key -out $1/https.crt  \
       -subj "/C=$Country_Name/ST=$State_Name/L=$Locality/O=$Organization/CN=$Common_Name"

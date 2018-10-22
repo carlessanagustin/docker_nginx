@@ -2,18 +2,19 @@
 
 ## Usage
 
-* Start server: `./start_server`
-* Stop server: `./stop_server`
+* Install: `make install`
+* Start server: `make up`
+* Stop server: `make down`
 
 ## SSL configuration
 
-* Option 1 self-signed: Just run `./start_server`
+* Option 1 self-signed: Just run `make up`
 * Option 2 apply yours: Place certificates in `./cert/nginx/http.crt` & `./cert/nginx/http.key`
 
 ## Access
 
 * Current user: admin
-* Current password: test12345678
+* Current password: admin@123
 
 ## Integrate with other services
 
