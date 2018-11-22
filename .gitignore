@@ -3,3 +3,5 @@ certs
 logs
 keys
 ARCHIVE
+*.swp
+private.mk

@@ -1,4 +1,5 @@
 .DEFAULT_GOAL := up
+include private.mk
 
 docker_compose_version ?= 1.22.0
 CHECK ?= ./certs/nginx/https.key
